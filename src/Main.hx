@@ -26,10 +26,30 @@ class Main extends App
 			point: -1,
 			color: 0xFFFF00,
 		},
+		{
+			label: 'N / A',
+			url: null,
+			point: 2,
+			color: 0xFFFFFF,
+		},
+		{
+			label: 'N / A',
+			url: null,
+			point: 3,
+			color: 0xFFFFFF,
+		},
+		{
+			label: 'N / A',
+			url: null,
+			point: 4,
+			color: 0xFFFFFF,
+		},
 	];
 
 	var minX = 0.0;
 	var maxX = 0.0;
+
+	var title:Text;
 
 	override function init()
 	{
@@ -38,7 +58,7 @@ class Main extends App
 		var date = '${buildDate.getMonth() + 1}/${buildDate.getDate() + 1}/${buildDate.getFullYear()}';
 		var time = '${buildDate.getHours()}:${buildDate.getMinutes()}:${buildDate.getSeconds()}';
 
-		var title = new Text(DefaultFont.get(), s2d);
+		title = new Text(DefaultFont.get(), s2d);
 		title.setScale(4);
 		title.text = 'Renewed Timeline ($date @ $time)';
 		title.x = title.y = 50;
@@ -58,35 +78,37 @@ class Main extends App
 
 		var points:Array<Point> = [];
 
-		for (entry in entries)
+		for (i => entry in entries)
 		{
-			var posX = title.x + ((Point.SIZE * 4) * entry.point);
+			var posX = title.x + ((Point.SIZE * 10) * i);
 			var posY = title.y + (title.textHeight * title.scaleY) + (Point.SIZE * 4);
 
 			var point = new Point(entry.color, posX, posY, s2d);
 			points.push(point);
 		}
 
-		for (point in points) if (s2d.camera.x < point.x) s2d.camera.x += (Math.abs(point.x + point.spr.getSize().x) + 20);
-		maxX = Math.round(s2d.camera.x);
+		for (point in points) if (maxX < point.camPos()) maxX = point.camPos();
 
-		s2d.camera.x = 0;
-
-		for (point in points) if (s2d.camera.x > point.x) s2d.camera.x -= (Math.abs(point.x + point.spr.getSize().x) + 20);
-		minX = Math.round(s2d.camera.x);
-
-		// title.text = 'maX : $maxX, miX : $minX';
+		title.text = 'maX : $maxX, miX : $minX';
 	}
 
-	final nudgeAmount:Float = 10;
+	final nudgeAmount:Float = 1 / 10;
 
 	override function update(dt:Float)
 	{
 		super.update(dt);
 
-		if (isPressed(LEFT) || isPressed(A)) nudge(-nudgeAmount, dt);
-		if (isPressed(RIGHT) || isPressed(D)) nudge(nudgeAmount, dt);
+		// title.text = '$dt';
+
+		if (isDown(LEFT) || isDown(A)) nudge(-nudgeAmount, dt);
+		if (isDown(RIGHT) || isDown(D)) nudge(nudgeAmount, dt);
 	}
 
-	function nudge(amount:Float, dt:Float) s2d.camera.x = Math.max(Math.min(s2d.camera.x + amount * dt, maxX), minX);
+	function nudge(amount:Float, dt:Float)
+	{
+		s2d.camera.x += amount / dt;
+
+		if (s2d.camera.x < minX) s2d.camera.x = minX;
+		if (s2d.camera.x > maxX) s2d.camera.x = maxX;
+	}
 }
