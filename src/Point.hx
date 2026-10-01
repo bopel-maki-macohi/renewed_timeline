@@ -1,3 +1,4 @@
+import js.Browser;
 import h2d.*;
 
 class Point extends Object
@@ -27,6 +28,7 @@ class Point extends Object
 		hitbox.onClick = (e:Dynamic) ->
 		{
 			trace('[UNIMPLEMENTED] opening url $url');
+			Browser.document.open(url, url, '', false);
 		};
 
 		hitbox.backgroundColor = 0xFF0000;
