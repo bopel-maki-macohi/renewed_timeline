@@ -1,5 +1,7 @@
 -lib heaps
 
--js out/build.js
+-js out/html5/renewed_timeline.js
+
+--dce full
 
 -main Main
