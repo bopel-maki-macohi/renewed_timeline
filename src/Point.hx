@@ -30,6 +30,9 @@ class Point extends Object
 		};
 
 		hitbox.backgroundColor = 0xFF0000;
+
+		hitbox.x += spr.getSize().x * .6;
+		hitbox.y += spr.getSize().y * .5;
 	}
 
 	public function camPos() return this.x + (spr.getSize().x * 4);
