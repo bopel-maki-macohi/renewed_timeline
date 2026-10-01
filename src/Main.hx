@@ -30,22 +30,10 @@ class Main extends App
 			color: 0xFFFF00,
 		},
 		{
-			label: 'N / A',
-			url: null,
+			label: 'The Fallen Friend',
+			url: 'https://docs.google.com/document/d/1YDPePICzfuC_CM6tcigRUqdRoBTlFWJdo5huoZeciUg/edit?usp=sharing',
 			point: 2,
-			color: 0xFFFFFF,
-		},
-		{
-			label: 'N / A',
-			url: null,
-			point: 3,
-			color: 0xFFFFFF,
-		},
-		{
-			label: 'N / A',
-			url: null,
-			point: 4,
-			color: 0xFFFFFF,
+			color: 0x64472F,
 		},
 	];
 
