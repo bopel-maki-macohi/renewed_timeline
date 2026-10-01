@@ -1,3 +1,5 @@
+-C src
+
 -lib heaps
 
 -js out/html5/renewed_timeline.js
