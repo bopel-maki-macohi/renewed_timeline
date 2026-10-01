@@ -2,7 +2,7 @@
 
 -lib heaps
 
--js out/html5/renewed_timeline.js
+-js ../out/html5/renewed_timeline.js
 
 --dce full
 

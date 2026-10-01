@@ -1,2 +1,3 @@
 .haxelib/
 out/
+!out/html5/index.html

@@ -9,6 +9,6 @@ class Main extends App
 	override function init()
 	{
 		var tf = new Text(DefaultFont.get(), s2d);
-		tf.text = "Hello World !";
+		tf.text = "Hello World!";
 	}
 }
