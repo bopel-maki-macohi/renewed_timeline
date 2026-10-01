@@ -6,17 +6,30 @@ class Point extends Object
 
 	public var spr:Graphics;
 
-	override public function new(color:Int, x = 0.0, y = 0.0, ?parent:Object)
+	public var hitbox:Interactive;
+
+	public var url:String;
+
+	override public function new(color:Int, x = 0.0, y = 0.0, ?parent:Object, ?url:String)
 	{
 		super(parent);
 
 		this.x = x;
 		this.y = y;
+		this.url = url;
 
 		spr = new Graphics(this);
 		spr.beginFill(color);
 		spr.drawCircle(0, 0, SIZE);
 		spr.endFill();
+
+		hitbox = new Interactive(SIZE, SIZE, this);
+		hitbox.onClick = (e:Dynamic) ->
+		{
+			trace('[UNIMPLEMENTED] opening url $url');
+		};
+
+		hitbox.backgroundColor = 0xFF0000;
 	}
 
 	public function camPos() return this.x + (spr.getSize().x * 4);
