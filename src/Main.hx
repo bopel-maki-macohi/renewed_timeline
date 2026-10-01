@@ -81,14 +81,13 @@ class Main extends App
 
 		var points:Array<Point> = [];
 		var pointTexts:Array<Text> = [];
-		var pointInteractions:Array<Interactive> = [];
 
 		for (i => entry in entries)
 		{
 			var posX = title.x + ((Point.SIZE * 10) * i);
 			var posY = title.y + (title.textHeight * title.scaleY) + (Point.SIZE * 4);
 
-			var point = new Point(entry.color, posX.round(), posY.round(), s2d);
+			var point = new Point(entry.color, posX.round(), posY.round(), s2d, entry.url);
 			points.push(point);
 
 			var text = new Text(DefaultFont.get(), s2d);
@@ -100,19 +99,6 @@ class Main extends App
 			text.y = (posY + (point.spr.getSize().y * 2)).round();
 
 			pointTexts.push(text);
-
-			var interaction = new Interactive(point.spr.getSize().x.round(), point.spr.getSize().y.round(), point);
-
-			interaction.allowMultiClick = false;
-			interaction.enableRightButton = true;
-
-			interaction.onClick = e ->
-			{
-				point.x -= 10;
-				text.x -= 10;
-			};
-
-			pointInteractions.push(interaction);
 		}
 
 		for (point in points) if (maxX < point.camPos()) maxX = point.camPos();

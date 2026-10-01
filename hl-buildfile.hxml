@@ -1,0 +1,7 @@
+-cp src
+-lib heaps
+-lib hlsdl
+-lib format
+-main Main
+-hl out/rtl.hl
+-D windowSize=1366x768
