@@ -27,7 +27,7 @@ class Point extends Object
 		hitbox = new Interactive(SIZE, SIZE, this);
 		hitbox.onClick = (e:Dynamic) ->
 		{
-			trace('[UNIMPLEMENTED] opening url $url');
+			trace('opening url $url');
 			Browser.document.open(url, url, '', false);
 		};
 
