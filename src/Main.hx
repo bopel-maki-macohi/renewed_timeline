@@ -77,6 +77,7 @@ class Main extends App
 		trace([for (entry in entries) entry.label]);
 
 		var points:Array<Point> = [];
+		var pointTexts:Array<Text> = [];
 
 		for (i => entry in entries)
 		{
@@ -85,9 +86,23 @@ class Main extends App
 
 			var point = new Point(entry.color, posX, posY, s2d);
 			points.push(point);
+
+			var text = new Text(DefaultFont.get(), s2d);
+
+			text.text = entry.label;
+			text.setScale(2);
+
+			text.x = posX - text.textWidth;
+			text.y = posY + (point.spr.getSize().y * 2);
+
+			pointTexts.push(text);
 		}
 
 		for (point in points) if (maxX < point.camPos()) maxX = point.camPos();
+		for (text in pointTexts) if (minX > text.x) minX = text.x;
+		
+		maxX *= .15;
+		minX *= 1.15;
 
 		title.text = 'maX : $maxX, miX : $minX';
 	}
